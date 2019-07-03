@@ -37,6 +37,10 @@ docker run --detach \
 	--log-opt max-size=32m \
 	--publish 0.0.0.0:3322:3322/tcp \
 	--publish 0.0.0.0:3389:3389/tcp \
+	--publish 0.0.0.0:4380:4380/udp \
+	--publish 0.0.0.0:27036:27036/tcp \
+	--publish 0.0.0.0:27037:27037/tcp \
+	--publish 0.0.0.0:27000-27100:27000-27100/udp \
 	--mount type=volume,src="${VOLUME_NAME}",dst='/home/guest/' \
 	--privileged \
 	--shm-size 2g \
