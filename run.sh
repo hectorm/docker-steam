@@ -41,7 +41,7 @@ docker run --detach \
 	--publish 0.0.0.0:27036:27036/tcp \
 	--publish 0.0.0.0:27037:27037/tcp \
 	--publish 0.0.0.0:27000-27100:27000-27100/udp \
-	--mount type=volume,src="${VOLUME_NAME}",dst='/home/guest/' \
+	--mount type=volume,src="${VOLUME_NAME}",dst='/home/steam/' \
 	--privileged \
 	--shm-size 2g \
 	"${IMAGE_NAME}" "$@" >/dev/null

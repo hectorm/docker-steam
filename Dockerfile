@@ -4,6 +4,9 @@
 
 FROM docker.io/hectormolinero/xubuntu:latest AS steam
 
+# Environment
+ENV UNPRIVILEGED_USER_NAME=steam
+
 # Install Steam
 ARG STEAM_DEB_URL=https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
@@ -20,4 +23,4 @@ EXPOSE 3389/tcp
 EXPOSE 4380/udp 27036/tcp 27037/tcp 27000-27100/udp
 
 # Store all user data in a volume
-VOLUME /home/guest/
+VOLUME /home/steam/
