@@ -14,10 +14,6 @@ RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
 	&& dpkg -i ./steam.deb || (apt-get update && apt-get install -fy) \
 	&& rm -rf /tmp/steam/ /var/lib/apt/lists/*
 
-# SSH port
-EXPOSE 3322/tcp
-# RDP port
-EXPOSE 3389/tcp
-# Steam In-Home Streaming
+# Expose Steam client ports
 # See: https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
 EXPOSE 4380/udp 27036/tcp 27037/tcp 27000-27100/udp
