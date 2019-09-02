@@ -10,7 +10,7 @@ ENV UNPRIVILEGED_USER_NAME=steam
 # Install Steam
 ARG STEAM_DEB_URL=https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
-	&& curl -Lo ./steam.deb "${STEAM_DEB_URL}" \
+	&& curl -Lo ./steam.deb "${STEAM_DEB_URL:?}" \
 	&& dpkg -i ./steam.deb || (apt-get update && apt-get install -fy) \
 	&& rm -rf /tmp/steam/ /var/lib/apt/lists/*
 
