@@ -33,19 +33,19 @@ if containerExists "${CONTAINER_NAME:?}"; then
 fi
 
 printf -- '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
-"${DOCKER:?}" run --detach \
+"${DOCKER:?}" run \
 	--name "${CONTAINER_NAME:?}" \
 	--hostname "${CONTAINER_NAME:?}" \
-	--restart on-failure:3 \
-	--log-opt max-size=32m \
+	--detach \
+	--shm-size 2g \
+	--publish 3322:3322/tcp \
 	--publish 3389:3389/tcp \
 	--publish 4380:4380/udp \
 	--publish 27036:27036/tcp \
 	--publish 27037:27037/tcp \
 	--publish 27000-27100:27000-27100/udp \
-	--shm-size 2g \
-	--device /dev/dri \
-	--mount type=volume,src="${VOLUME_NAME:?}",dst='/home/steam/' \
+	--device /dev/dri:/dev/dri \
+	--mount type=volume,src="${VOLUME_NAME:?}",dst=/home/steam/ \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
 
 printf -- '%s\n\n' 'Done!'
