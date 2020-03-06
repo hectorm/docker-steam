@@ -11,7 +11,6 @@ IMAGE_PROJECT=steam
 IMAGE_TAG=latest
 IMAGE_NAME=${IMAGE_REGISTRY:?}/${IMAGE_NAMESPACE:?}/${IMAGE_PROJECT:?}:${IMAGE_TAG:?}
 CONTAINER_NAME=${IMAGE_PROJECT:?}
-VOLUME_NAME=${CONTAINER_NAME:?}-data
 
 imageExists() { [ -n "$("${DOCKER:?}" images -q "${1:?}")" ]; }
 containerExists() { "${DOCKER:?}" ps -af name="${1:?}" --format '{{.Names}}' | grep -Fxq "${1:?}"; }
@@ -47,7 +46,6 @@ printf -- '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--publish 27000-27100:27000-27100/udp \
 	--env ENABLE_XDUMMY=true \
 	--device /dev/dri:/dev/dri \
-	--mount type=volume,src="${VOLUME_NAME:?}",dst=/home/steam/ \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
 
 printf -- '%s\n\n' 'Done!'
