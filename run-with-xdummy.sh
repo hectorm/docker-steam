@@ -45,7 +45,7 @@ printf -- '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--publish 27036:27036/tcp \
 	--publish 27037:27037/tcp \
 	--publish 27000-27100:27000-27100/udp \
-	--env ENABLE_VIRTUALGL=true \
+	--env ENABLE_XDUMMY=true \
 	--device /dev/dri:/dev/dri \
 	--mount type=volume,src="${VOLUME_NAME:?}",dst=/home/steam/ \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
