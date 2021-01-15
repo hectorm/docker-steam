@@ -4,6 +4,8 @@ A Docker image for [Steam](https://steampowered.com) based on [Xubuntu on Docker
 
 ## Start an instance
 
+### Docker CLI
+
 ```sh
 docker run \
   --name steam \
@@ -11,8 +13,31 @@ docker run \
   --shm-size 2g \
   --publish 3322:3322/tcp \
   --publish 3389:3389/tcp \
+  --publish 4380:4380/udp \
+  --publish 27036:27036/tcp \
+  --publish 27037:27037/tcp \
+  --publish 27000-27100:27000-27100/udp \
   --device /dev/dri:/dev/dri \
-  hectormolinero/steam:latest
+  docker.io/hectormolinero/steam:latest
+```
+
+### Docker Compose
+
+```yaml
+version: '3.8'
+services:
+  steam:
+    image: 'docker.io/hectormolinero/steam:latest'
+    shm_size: '2gb'
+    ports:
+      - '3322:3322/tcp'
+      - '3389:3389/tcp'
+      - '4380:4380/udp'
+      - '27036:27036/tcp'
+      - '27037:27037/tcp'
+      - '27000-27100:27000-27100/udp'
+    devices:
+      - '/dev/dri:/dev/dri'
 ```
 
 > You will be able to connect to the container via SSH through 3322/tcp port and RDP through 3389/tcp port.
