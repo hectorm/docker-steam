@@ -31,7 +31,13 @@ if containerExists "${CONTAINER_NAME:?}"; then
 	"${DOCKER:?}" rm "${CONTAINER_NAME:?}" >/dev/null
 fi
 
+CONTAINER_DEVICES=$(find /dev/ -mindepth 1 -maxdepth 1 \
+	'(' -name 'dri' -or -name 'vga_arbiter' -or -name 'nvidia*' ')' \
+	-exec printf -- '--device %s:%s\n' '{}' '{}' ';' \
+)
+
 printf -- '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
+# shellcheck disable=SC2086
 "${DOCKER:?}" run \
 	--name "${CONTAINER_NAME:?}" \
 	--hostname "${CONTAINER_NAME:?}" \
@@ -43,7 +49,7 @@ printf -- '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--publish 27036:27036/tcp \
 	--publish 27037:27037/tcp \
 	--publish 27000-27100:27000-27100/udp \
-	--device /dev/dri:/dev/dri \
+	${CONTAINER_DEVICES?} \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
 
 printf -- '%s\n\n' 'Done!'
