@@ -4,9 +4,6 @@
 
 FROM docker.io/hectormolinero/xubuntu:latest AS steam
 
-# Environment
-ENV UNPRIVILEGED_USER_NAME=steam
-
 # Install Steam
 ARG STEAM_DEB_URL=https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
