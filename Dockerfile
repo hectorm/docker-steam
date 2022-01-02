@@ -11,6 +11,7 @@ RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
 	&& dpkg -i ./steam.deb || (apt-get update && apt-get install -fy) \
 	&& tar -xf /usr/lib/steam/bootstraplinux*.tar.* steamdeps.txt \
 	&& yes | steamdeps ./steamdeps.txt \
+	&& sed -i 's|^\([^#].*\)|#\1|g' /etc/apt/sources.list.d/steam.list \
 	&& rm -rf /tmp/steam/ /var/lib/apt/lists/*
 
 # Expose Steam client ports
