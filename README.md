@@ -11,6 +11,8 @@ docker run \
   --name steam \
   --detach \
   --shm-size 2g \
+  --security-opt label=type:spc_t \
+  --security-opt seccomp=unconfined \
   --publish 3322:3322/tcp \
   --publish 3389:3389/tcp \
   --publish 4380:4380/udp \
@@ -29,6 +31,9 @@ services:
   steam:
     image: 'docker.io/hectormolinero/steam:latest'
     shm_size: '2gb'
+    security_opt:
+      - 'label=type:spc_t'
+      - 'seccomp=unconfined'
     ports:
       - '3322:3322/tcp'
       - '3389:3389/tcp'

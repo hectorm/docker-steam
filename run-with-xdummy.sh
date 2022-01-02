@@ -43,6 +43,8 @@ printf '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--hostname "${CONTAINER_NAME:?}" \
 	--detach \
 	--shm-size 2g \
+	--security-opt label=type:spc_t \
+	--security-opt seccomp=unconfined \
 	--publish 3322:3322/tcp \
 	--publish 3389:3389/tcp \
 	--publish 4380:4380/udp \
