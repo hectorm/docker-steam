@@ -1,0 +1,2 @@
+# Allow write access to uinput kernel module
+KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", MODE="0666"
