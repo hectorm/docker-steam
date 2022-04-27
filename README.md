@@ -20,7 +20,7 @@ docker run \
   --publish 27037:27037/tcp \
   --publish 27000-27100:27000-27100/udp \
   --device /dev/dri:/dev/dri \
-  docker.io/hectormolinero/steam:latest
+  docker.io/hectorm/steam:latest
 ```
 
 ### Docker Compose
@@ -29,7 +29,7 @@ docker run \
 version: '3.9'
 services:
   steam:
-    image: 'docker.io/hectormolinero/steam:latest'
+    image: 'docker.io/hectorm/steam:latest'
     shm_size: '2gb'
     security_opt:
       - 'label=type:spc_t'
