@@ -1,8 +1,8 @@
 ##################################################
-## "steam" stage
+## "main" stage
 ##################################################
 
-FROM docker.io/hectorm/xubuntu:v96 AS main
+FROM docker.io/hectorm/xubuntu:v98 AS main
 
 # Install Steam
 ARG STEAM_DEB_URL=https://steamcdn-a.akamaihd.net/client/installer/steam.deb
