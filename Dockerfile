@@ -2,11 +2,12 @@
 ## "main" stage
 ##################################################
 
-FROM docker.io/hectorm/xubuntu:v103 AS main
+FROM docker.io/hectorm/xubuntu:v104 AS main
 
 # Install Steam
 ARG STEAM_DEB_URL=https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
+	&& dpkg --add-architecture i386 \
 	&& curl -Lo ./steam.deb "${STEAM_DEB_URL:?}" \
 	&& dpkg -i ./steam.deb || (apt-get update && apt-get install -fy) \
 	&& tar -xf /usr/lib/steam/bootstraplinux*.tar.* steamdeps.txt \
