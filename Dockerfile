@@ -12,7 +12,7 @@ RUN mkdir /tmp/steam/ && cd /tmp/steam/ \
 	&& dpkg -i ./steam.deb || (apt-get update && apt-get install -fy) \
 	&& tar -xf /usr/lib/steam/bootstraplinux*.tar.* steamdeps.txt \
 	&& yes | steamdeps ./steamdeps.txt \
-	&& sed -i 's|^\([^#].*\)|#\1|g' /etc/apt/sources.list.d/steam.list \
+	&& sed -i 's|^\([^#].*\)|#\1|g' /etc/apt/sources.list.d/steam-*.list \
 	&& sed -i 's|MODE="[0-9]*"|MODE="0666"|g' /usr/lib/udev/rules.d/*-steam-*.rules \
 	&& rm -rf /tmp/steam/ /var/lib/apt/lists/*
 
