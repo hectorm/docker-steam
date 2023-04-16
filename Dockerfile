@@ -21,6 +21,9 @@ COPY --chown=root:root ./config/udev/ /etc/udev/
 RUN find /etc/udev/ -type d -not -perm 0755 -exec chmod 0755 '{}' ';'
 RUN find /etc/udev/ -type f -not -perm 0644 -exec chmod 0644 '{}' ';'
 
+# Start Steam client on login
+RUN install -Dm 644 /usr/share/applications/steam.desktop /etc/skel/.config/autostart/steam.desktop
+
 # Expose Steam client ports
 # See: https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
 EXPOSE 4380/udp 27036/tcp 27037/tcp 27000-27100/udp
