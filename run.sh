@@ -51,6 +51,8 @@ printf '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--publish 27036:27036/tcp \
 	--publish 27037:27037/tcp \
 	--publish 27000-27100:27000-27100/udp \
+	--env SERVICE_XRDP_BOOTSTRAP_ENABLED=true \
+	--env SERVICE_XORG_HEADLESS_ENABLED=true \
 	${CONTAINER_DEVICES?} \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
 
