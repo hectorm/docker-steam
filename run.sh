@@ -32,7 +32,7 @@ if containerExists "${CONTAINER_NAME:?}"; then
 fi
 
 CONTAINER_DEVICES=$(find /dev/ -mindepth 1 -maxdepth 1 \
-	'(' -name 'dri' -or -name 'vga_arbiter' -or -name 'nvidia*' ')' \
+	'(' -name 'dri' -or -name 'vga_arbiter' -or -name 'nvidia*' -or -name 'nvhost*' -or -name 'nvmap' ')' \
 	-exec printf '--device %s:%s\n' '{}' '{}' ';' \
 )
 
@@ -52,7 +52,6 @@ printf '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--publish 27037:27037/tcp \
 	--publish 27000-27100:27000-27100/udp \
 	--env SERVICE_XRDP_BOOTSTRAP_ENABLED=true \
-	--env SERVICE_XORG_HEADLESS_ENABLED=true \
 	${CONTAINER_DEVICES?} \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
 
