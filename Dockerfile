@@ -30,4 +30,4 @@ RUN install -Dm 644 /usr/share/applications/steam.desktop /etc/skel/.config/auto
 
 # Expose Steam client ports
 # See: https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
-EXPOSE 4380/udp 27036/tcp 27037/tcp 27000-27100/udp
+EXPOSE 27031-27036/udp 27036/tcp 27037/tcp

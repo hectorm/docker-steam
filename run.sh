@@ -47,10 +47,9 @@ printf '%s\n' "Creating \"${CONTAINER_NAME:?}\" container..."
 	--security-opt seccomp=unconfined \
 	--publish 3322:3322/tcp \
 	--publish 3389:3389/tcp \
-	--publish 4380:4380/udp \
+	--publish 27031-27036:27031-27036/udp \
 	--publish 27036:27036/tcp \
 	--publish 27037:27037/tcp \
-	--publish 27000-27100:27000-27100/udp \
 	--env SERVICE_XRDP_BOOTSTRAP_ENABLED=true \
 	${CONTAINER_DEVICES?} \
 	"${IMAGE_NAME:?}" "$@" >/dev/null
