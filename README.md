@@ -26,7 +26,6 @@ docker run \
 ### Docker Compose
 
 ```yaml
-version: '3.9'
 services:
   steam:
     image: 'docker.io/hectorm/steam:latest'
@@ -37,10 +36,9 @@ services:
     ports:
       - '3322:3322/tcp'
       - '3389:3389/tcp'
-      - '4380:4380/udp'
+      - '27031-27036:27031-27036/udp'
       - '27036:27036/tcp'
       - '27037:27037/tcp'
-      - '27000-27100:27000-27100/udp'
     devices:
       - '/dev/dri:/dev/dri'
 ```
