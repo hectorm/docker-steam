@@ -23,12 +23,6 @@ EOF
 # Copy udev config
 COPY --chown=root:root --chmod=a+rX,u+w,go-w ./config/udev/ /etc/udev/
 
-# Disable X11 XRandR extension for Steam client
-# See: https://discourse.libsdl.org/t/sdl-createwindow-no-available-displays/21705
-RUN <<-EOF
-	sed -i '/^#!.*$/{s||&\nexport SDL_VIDEO_X11_XRANDR=0\n|;:a;$!N;$!ba}' /usr/bin/steam
-EOF
-
 # Start Steam client on login
 RUN <<-EOF
 	install -Dm 644 /usr/share/applications/steam.desktop /etc/skel/.config/autostart/steam.desktop
